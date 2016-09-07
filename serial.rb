@@ -1,24 +1,26 @@
-#simplest ruby program to read from arduino serial,
-#using the SerialPort gem
-#(http://rubygems.org/gems/serialport)
+# using the SerialPort gem, rout serial input to OSX keyboard
+require 'serialport'
+require 'accessibility/keyboard'
+include Accessibility::Keyboard
 
-require "serialport"
+# params for serial port, may be different for you
+port = '/dev/cu.usbmodem1421'
+SerialPort.open(port) do |sp| 
 
-#params for serial port
-port_str = "/dev/ttyUSB0"  #may be different for you
-baud_rate = 9600
-data_bits = 8
-stop_bits = 1
-parity = SerialPort::NONE
+  # configure port
+  sp.baud = 9600
+  sp.data_bits = 8
+  sp.stop_bits = 1
+  sp.parity = SerialPort::NONE
+  sp.read_timeout = 200
 
-sp = SerialPort.new(port_str, baud_rate, data_bits, stop_bits, parity)
-
-#just read forever
-while true do
-  while (i = sp.gets.chomp) do       # see note 2
+  # rout incoming data to keyboard forever
+  while true do
+    puts sp
+    i =  sp.gets.chomp
     puts i
-    #puts i.class #String
+    keyboard_events_for(i).each { |e| KeyCoder.post_event e }
   end
+
 end
 
-sp.close                       #see note 1
