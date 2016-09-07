@@ -40,7 +40,7 @@ int encode() {
     return code;
 }
 
-char[] parse(code) {
+char* parse(int code) {
     // return relevant braille encoding given encoding. range is between 0 - 63,
     // custom mapping based on simplified english braille. can be found here:
     // https://en.wikipedia.org/wiki/English_Braille
@@ -117,18 +117,18 @@ void loop() {
     if (digitalRead(enter) == HIGH) {
 
         // read the code, get char
-        char[] in = parse(encode());
+        char* in = parse(encode());
 
         // write out char
         Serial.write(in);
 
         // wait 200 ms, check enter again
-        sleep(200);
+        delay(200);
 
         // keep entering char every 50 ms
         while (digitalRead(enter) == HIGH) {
             Serial.write(in);
-            sleep(50);
+            delay(50);
         }
     }
 }
