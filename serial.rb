@@ -5,7 +5,7 @@ include Accessibility::Keyboard
 
 # params for serial port, may be different for you
 port = '/dev/cu.usbmodem1421'
-SerialPort.open(port) do |sp| 
+SerialPort.open(port) do |sp|
 
   # configure port
   sp.baud = 9600
@@ -14,13 +14,11 @@ SerialPort.open(port) do |sp|
   sp.parity = SerialPort::NONE
   sp.read_timeout = 200
 
-  # rout incoming data to keyboard forever
+  # rout data to keyboard
   while true do
-    puts sp
-    i =  sp.gets.chomp
-    puts i
-    keyboard_events_for(i).each { |e| KeyCoder.post_event e }
+    keyboard_events_for(sp.gets.chomp).each do |e|
+      KeyCoder.post_event e
+    end
   end
-
 end
 

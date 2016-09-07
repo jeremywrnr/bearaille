@@ -130,8 +130,9 @@ void loop() {
 
         // write out char
         Serial.write(in);
+        Serial.write('\n');
 
-        // delay repeat
+        // slow down
         delay(200);
     }
 }
