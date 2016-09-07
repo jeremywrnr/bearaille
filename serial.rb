@@ -16,9 +16,11 @@ SerialPort.open(port) do |sp|
 
   # rout data to keyboard
   while true do
-    keyboard_events_for(sp.gets.chomp).each do |e|
-      KeyCoder.post_event e
-    end
+    inbyte = sp.gets.chomp
+
+    next if inbyte.nil?
+
+    keyboard_events_for(inbyte).each {|e| KeyCoder.post_event(e) }
   end
 end
 
