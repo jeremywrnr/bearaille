@@ -13,8 +13,13 @@ int cr = D4; // center-right
 int bl = D5; // lower-left
 int br = D6; // lower-right
 
+// fix for readbear
+#if defined(ARDUINO)
+SYSTEM_MODE(SEMI_AUTOMATIC);
+#endif
+
 void setup() {
-    // read switch states
+    // setup pin switches
     pinMode(enter, INPUT);
     pinMode(ul, INPUT);
     pinMode(ur, INPUT);
@@ -22,6 +27,9 @@ void setup() {
     pinMode(cr, INPUT);
     pinMode(bl, INPUT);
     pinMode(br, INPUT);
+
+    // begin communication
+    Serial.begin(9600);
 }
 
 int encode() {
@@ -30,17 +38,17 @@ int encode() {
 
     /* ul, ur, cl, cr, bl, br */
     /* MSB <------------> LSB */
-    if(digitalRead(ul)) code += 32;
-    if(digitalRead(ur)) code += 16;
-    if(digitalRead(cl)) code += 8;
-    if(digitalRead(cr)) code += 4;
-    if(digitalRead(bl)) code += 2;
-    if(digitalRead(br)) code += 1;
+    if(digitalRead(ul) == HIGH) code += 32;
+    if(digitalRead(ur) == HIGH) code += 16;
+    if(digitalRead(cl) == HIGH) code += 8;
+    if(digitalRead(cr) == HIGH) code += 4;
+    if(digitalRead(bl) == HIGH) code += 2;
+    if(digitalRead(br) == HIGH) code += 1;
 
     return code;
 }
 
-char* parse(int code) {
+char* strmap(int code) {
     // return relevant braille encoding given encoding. range is between 0 - 63,
     // custom mapping based on simplified english braille. can be found here:
     // https://en.wikipedia.org/wiki/English_Braille
@@ -109,6 +117,7 @@ char* parse(int code) {
         case 61: return "er";
         case 62: return "q";
         case 63: return "for";
+        default: return "null";
     }
 }
 
@@ -117,19 +126,13 @@ void loop() {
     if (digitalRead(enter) == HIGH) {
 
         // read the code, get char
-        char* in = parse(encode());
+        char* in = strmap(encode());
 
         // write out char
         Serial.write(in);
 
-        // wait 200 ms, check enter again
+        // delay repeat
         delay(200);
-
-        // keep entering char every 50 ms
-        while (digitalRead(enter) == HIGH) {
-            Serial.write(in);
-            delay(50);
-        }
     }
 }
 
