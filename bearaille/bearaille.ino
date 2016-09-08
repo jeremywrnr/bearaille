@@ -20,13 +20,13 @@ SYSTEM_MODE(SEMI_AUTOMATIC);
 
 void setup() {
     // setup pin switches
-    pinMode(enter, INPUT);
-    pinMode(ul, INPUT);
-    pinMode(ur, INPUT);
-    pinMode(cl, INPUT);
-    pinMode(cr, INPUT);
-    pinMode(bl, INPUT);
-    pinMode(br, INPUT);
+    pinMode(enter, INPUT_PULLUP);
+    pinMode(ul, INPUT_PULLUP);
+    pinMode(ur, INPUT_PULLUP);
+    pinMode(cl, INPUT_PULLUP);
+    pinMode(cr, INPUT_PULLUP);
+    pinMode(bl, INPUT_PULLUP);
+    pinMode(br, INPUT_PULLUP);
 
     // begin communication
     Serial.begin(9600);
@@ -38,12 +38,12 @@ int encode() {
 
     /* ul, ur, cl, cr, bl, br */
     /* MSB <------------> LSB */
-    if(digitalRead(ul) == HIGH) code += 32;
-    if(digitalRead(ur) == HIGH) code += 16;
-    if(digitalRead(cl) == HIGH) code += 8;
-    if(digitalRead(cr) == HIGH) code += 4;
-    if(digitalRead(bl) == HIGH) code += 2;
-    if(digitalRead(br) == HIGH) code += 1;
+    if(digitalRead(ul) == LOW) code += 32;
+    if(digitalRead(ur) == LOW) code += 16;
+    if(digitalRead(cl) == LOW) code += 8;
+    if(digitalRead(cr) == LOW) code += 4;
+    if(digitalRead(bl) == LOW) code += 2;
+    if(digitalRead(br) == LOW) code += 1;
 
     return code;
 }
@@ -123,12 +123,12 @@ char* strmap(int code) {
 
 void loop() {
     // trigger on submission
-    if (digitalRead(enter) == HIGH) {
+    if (digitalRead(enter) == LOW) {
 
-        // read the code, get char
+        // read the code, get string
         char* in = strmap(encode());
 
-        // write out char
+        // write string
         Serial.write(in);
         Serial.write('\n');
 
