@@ -60,7 +60,7 @@ design added two new laser cut holes for securing the enclosure.
 
 [youtube]()
 
-[outtake]()
+[outtake](https://youtu.be/TLDJAm3al_s)
 
 
 ## schematic
