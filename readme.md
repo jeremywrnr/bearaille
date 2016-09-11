@@ -1,10 +1,12 @@
-:bear bearaille
+:bear: bearaille
 ===============
 
 This is Ruby and MCU code and designs for a braille keyboard entrance device,
-using the RedBear Duo. Made for IDD at uc berkeley, fall 2016.
+using the RedBear Duo.
 
 ![bearaille](/images/finished.jpg)
+
+Made for IDD at uc berkeley, fall 2016.
 
 
 ## setup
