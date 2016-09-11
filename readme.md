@@ -4,7 +4,7 @@
 This is Ruby and MCU code and designs for a braille keyboard entrance device,
 using the RedBear Duo. Made for IDD at uc berkeley, fall 2016.
 
-![bearaille](/image/finished.jpg)
+![bearaille](/images/finished.jpg)
 
 
 ## setup
@@ -22,7 +22,7 @@ I used Braille because it was a fairly concise input method, and also would
 allow for people that were already familiar with how to read braille an
 efficient way to enter text.
 
-![schematic](/image/schematic.png)
+![schematic](/images/schematic.png)
 
 My device consists of 7 switches - one for each segment of braille and another
 for submitting the chord and entering text, in the shape of a bear head. The
@@ -31,13 +31,13 @@ mapping in the arduino code which samples the state of each switch when the
 enter button is pressed, and then returns a string which corresponds to that
 mapping.
 
-![wiring](/image/wiring.png)
+![wiring](/images/wiring.png)
 
 To run this code, you will have to set the proper port name to open in
 `serial.rb`. Once this is done, and you checked that input is coming into the
 serial port, you can route it to directly to the keyboard by running `make`.
 
-![under](/image/under-wiring.jpg)
+![under](/images/under-wiring.jpg)
 
 [eng]:https://en.wikipedia.org/wiki/English_Braille
 
