@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module fritzingVersion="0.9.3b.04.19.5c895d327c44a3114e5fcc9d8260daf0cbb52806" icon="Search.png" search="redbear">
+    <title>Search</title>
+    <instances>
+        <instance moduleIdRef="Blend_Micro_1.0" modelIndex="7080" path="/Applications/Fritzing.app/Contents/MacOS/fritzing-parts/core/blend_micro1.0.fzp">
+            <views/>
+        </instance>
+        <instance moduleIdRef="redbearduo_aaca04fb038d172666553b0ce55baebd_1" modelIndex="7081" path="/Users/jeremywrnr/Documents/Fritzing/parts/user/redbearduo_aaca04fb038d172666553b0ce55baebd_1.fzp">
+            <views/>
+        </instance>
+    </instances>
+</module>
