@@ -6,12 +6,12 @@
  */
 
 int enter = D0; // submit
-int ul = D1; // upper-left
-int ur = D2; // upper-right
-int cl = D3; // center-left
-int cr = D4; // center-right
-int bl = D5; // lower-left
-int br = D6; // lower-right
+int br = D1; // lower-right
+int bl = D2; // lower-left
+int cr = D3; // center-right
+int cl = D4; // center-left
+int ur = D5; // upper-right
+int ul = D6; // upper-left
 
 // fix for readbear
 #if defined(ARDUINO)
