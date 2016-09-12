@@ -58,7 +58,7 @@ design added two new laser cut holes for securing the enclosure.
 
 ## videos
 
-[youtube]()
+[youtube](https://youtu.be/5PIimpTt3YA)
 
 [outtake](https://youtu.be/TLDJAm3al_s)
 
